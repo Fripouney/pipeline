@@ -1,0 +1,28 @@
+name: deploy
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: pages
+      url: ${{steps.deploy.outputs.page_url}}
+    steps:
+      - name: check
+        uses: actions/checkout@v4
+      - name: pages setup
+        uses: actions/configure-pages@v3
+      - name: upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          - path: "."
+      - name: deploy
+        id: deploy
+        uses: actions/deploy-pages@v2
+
