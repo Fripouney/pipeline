@@ -19,14 +19,28 @@ jobs:
       name: pages
       url: ${{steps.deploy.outputs.page_url}}
     steps:
-      - name: check
+      - name: checkout
         uses: actions/checkout@v4
+
       - name: pages setup
         uses: actions/configure-pages@v3
+
+      - name: setup node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+    
+      - name: install dependencies
+        run: npm install
+
+      - name: build app
+        run: npm run build
+
       - name: upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: "."
+          
       - name: deploy
         id: deploy
         uses: actions/deploy-pages@v2
