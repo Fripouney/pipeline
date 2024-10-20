@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pages
-      url: ${{steps.deploy.outputs.page_url}}
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -37,7 +37,8 @@ jobs:
         run: npm run build
           
       - name: deploy
-        run: npx angular-cli-ghpages --dir=src/app
+        run: |
+          npx angular-cli-ghpages --dir=src/app
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
