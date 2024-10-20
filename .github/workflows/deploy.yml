@@ -33,6 +33,9 @@ jobs:
       - name: install dependencies
         run: npm install
 
+      - name: install angular cli
+        run: npm install -g @angular/cli
+
       - name: build app
         run: ng build --base-href /pipeline/
 
