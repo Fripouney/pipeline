@@ -35,6 +35,9 @@ jobs:
 
       - name: build app
         run: npm run build
+
+      - name: list dist directory
+        run: ls -la dist/pipeline
           
       - name: deploy
         run: npx angular-cli-ghpages --dir=dist/pipeline/browser
