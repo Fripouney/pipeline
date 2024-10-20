@@ -42,8 +42,10 @@ jobs:
       - name: build app
         run: ng build --base-href /pipeline/
 
-      - name: list dist directory
-        run: ls -la dist/pipeline/browser
+      - name: Configure Git
+        run: |
+          git config --global user.email "loanlabastie@gmail.com"
+          git config --global user.name "Fripouney"
           
       - name: deploy
         run: npx angular-cli-ghpages --dir=dist/pipeline/browser --branch=gh-pages --repo=https://github.com/Fripouney/pipeline.git --no-silent
