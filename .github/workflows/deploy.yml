@@ -34,7 +34,7 @@ jobs:
         run: npm install
 
       - name: build app
-        run: npm run build
+        run: ng build --base-href /pipeline/
 
       - name: list dist directory
         run: ls -la dist/pipeline/browser
