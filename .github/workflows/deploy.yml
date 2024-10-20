@@ -36,6 +36,9 @@ jobs:
       - name: install angular cli
         run: npm install -g @angular/cli
 
+      - name: install angular-cli-ghpages
+        run: npm install -g angular-cli-ghpages
+
       - name: build app
         run: ng build --base-href /pipeline/
 
@@ -43,7 +46,7 @@ jobs:
         run: ls -la dist/pipeline/browser
           
       - name: deploy
-        run: npx angular-cli-ghpages --dir=dist/pipeline/browser
+        run: npx angular-cli-ghpages --dir=dist/pipeline/browser --branch=gh-pages --repo=https://github.com/Fripouney/pipeline.git --no-silent
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
